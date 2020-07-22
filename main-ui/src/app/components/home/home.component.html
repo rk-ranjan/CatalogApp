@@ -1,0 +1,13 @@
+
+<div class="row">
+   <div class="col-sm-3">
+       Filter Area
+   </div>
+   <div class="col-sm-9">
+     <div class="row">
+       <div class="col-sm-4" *ngFor="let course of courser">
+           <app-course [course] = "course"></app-course>
+       </div>
+     </div>
+  </div>
+</div>
