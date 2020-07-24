@@ -1,9 +1,9 @@
 const PROXY_CONFIG = [
     {
         context: [
-            "/rest-api"
+            "/*"
         ],
-        target: "http://localhost:8080",
+        target: "https://frontend-hiring.appspot.com",
         secure: false,
         "logLevel": "debug",
         "changeOrigin": true
