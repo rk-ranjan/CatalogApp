@@ -2,9 +2,6 @@
 <div class="row secondry-offset">
    <div class="col-sm-3">
       <div class="row">
-        <div class="col-sm-1">
-          
-        </div>
         <div class="col-sm-11 pl-5 m-0">
           <p class="font-weight-bold">
           <div>
@@ -24,7 +21,7 @@
       </div>
    </div>
    <div class="col-sm-9">
-    <p> {{courses.length}} courses open for admission </p>
+    <p> {{tempCourses.length}} courses open for admission </p>
      <div class="row">
        <div class="col-sm-4 m-0 p-2" *ngFor="let course of tempCourses">
            <app-course [course] = "course"></app-course>

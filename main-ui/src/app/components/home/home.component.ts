@@ -52,7 +52,32 @@ export class HomeComponent implements OnInit {
      }
   }
   public filterCourse = (inputText: string) => {
-     console.log(inputText);
+    //  this.filterByCourse(this.myRadio);
+     this.tempCourses = [...inputText ? this.filterSingleItem(inputText) : this.filterWithNoSearchText(this.myRadio)];
+  }
+  public filterSingleItem = (text: string) => {
+    let filterArray 
+    if(this.myRadio !== 'all') {
+      filterArray= this.courses.filter((singleItem) => singleItem.instructor_name.toLowerCase().indexOf(text.toLowerCase())  > -1 && singleItem.category === this.myRadio); 
+    } else {
+      filterArray= this.courses.filter((singleItem) => singleItem.instructor_name.toLowerCase().indexOf(text.toLowerCase())  > -1); 
+    }
+    return filterArray;
   }
 
+  public filterWithNoSearchText = (courseName: string) => {
+    var courseByCat: any[] = [];
+    if(courseName === 'all') {
+      courseByCat = this.courses;
+    } else {
+       var temp: any[] = [];
+       this.courses.forEach((elem) => {
+           if(elem.category === courseName) {
+             temp.push(elem);
+           }
+       });
+       courseByCat = [...temp];
+    }
+    return courseByCat;
+  }
 }
