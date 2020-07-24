@@ -15,13 +15,13 @@ export class HomeComponent implements OnInit {
   ) { }
   public courses : Course[] = [];
   public categories: Category[] = [];
-
+  public tempCourses: Course[] = [];
+  public myRadio: string = 'all';
   ngOnInit() {
       this.courseService.getAllCourses().subscribe(
         (res: any) => {
-
           this.courses = JSON.parse(res.payload);
-          console.log(this.courses);
+          this.tempCourses =  this.courses;
       });
       this.courseService.getAllCategory().subscribe(
         (response: any) => {
@@ -29,12 +29,18 @@ export class HomeComponent implements OnInit {
           cat.forEach((element) => {
             this.categories.push(element);
           });
-          console.log(this.categories);
-      });
+      });      
+  }
+
+  public selectRadioButton = () =>{
+      if(this.tempCourses.length === this.courses.length) {
+        
+      }
   }
   
   public changECategory = (data: string) => {
     console.log(data);
+    this.myRadio = data;
   }
 
 }

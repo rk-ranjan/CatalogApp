@@ -1,24 +1,29 @@
-<div class="card">
+<div class="card pt-2 pb-2">
     <div class="d-flex">
-        <div class="p-2">
-            <img src="#" alt="noImg"/>
+        <div class="p-2 pl-3">
+            <i class="fa fa-circle" aria-hidden="true" style="font-size: 42px;color: #26add6fa;"></i>
         </div>
-        <div class="p-2">
-            <p>{{ course.title }} </p>
-            <p>{{course.instructor_name}}</p>
+        <div class="p-1 pl-2">
+            {{ course.title }}<br>
+            <span class="font-weight-bold">{{course.instructor_name}}</span>
         </div>
     </div>
-    <div class="offset-secondry text-center">
-        <p>Descriptions:</p>
-    </div>
-    <div class="d-flex">
-        <div class="p-2">
-            <span class="fa fa-facebook"></span>
+    <div class="d-flex  offset-secondry">
+        <div class="p-2 pl-4 pr-2">
+            <span class="fa fa-exclamation-circle" style="font-size: 22px;color: black;"></span>
         </div>
+        <div class="p-2 pr-1" style="justify-content: start;">
+            <p [innerHTML]="course.description"></p>
+        </div>
+    </div>
+    <div class="d-flex pl-4">
         <div class="p-2">
-            <p>Pre-registrations</p>
-            <p>Date</p>
-            <p>Duration</p>
+            <span class="fa fa-calendar" style="font-size: 22px;color: black;"></span>
+        </div>
+        <div class="p-2 pl-2">
+            <span class="font-weight-bold">Pre-registrations</span><br>
+            <span class="font-weight-bold">{{course.start_date | date: 'MMMM yy'}} -  {{course.end_date | date: 'MMMM yy'}}</span><br>
+            {{weeks}} week course ,{{course.estimated_workload}}
         </div>
     </div>
 </div>
