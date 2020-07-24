@@ -6,18 +6,18 @@
           
         </div>
         <div class="col-sm-11 pl-5 m-0">
-          <p class="font-weight-bold"> Search for keyword</p>
+          <p class="font-weight-bold">
           <div>
-            <input type="text" placeholder="Search courses"/>
+            <input type="text" class="form-control" #filterText placeholder="&#xF002; Filter courses" id="demo" (keyup)="filterCourse(filterText.value)">
           </div>
           <br>
           <p class="font-weight-bold">Category</p>
           <div class="d-flex flex-column">
               <div class="p-2">
-                  <input type="radio" [(ngModel)]="myRadio" id="all" value="all"/> All
+                  <input type="radio" [(ngModel)]="myRadio" (click)="changeCategory('all')" id="all" value="all"/> All
               </div>
               <div class="p-2" *ngFor="let catego of categories">
-                <input type="radio" [(ngModel)]="myRadio" id="catego" (click)="changECategory(catego)" value="{{catego}}" />  {{catego}}
+                <input type="radio" [(ngModel)]="myRadio" id="catego" (click)="changeCategory(catego)" value="{{catego}}" />  {{catego}}
               </div>
           </div>
         </div>
@@ -26,7 +26,7 @@
    <div class="col-sm-9">
     <p> {{courses.length}} courses open for admission </p>
      <div class="row">
-       <div class="col-sm-4 m-0 p-2" *ngFor="let course of courses">
+       <div class="col-sm-4 m-0 p-2" *ngFor="let course of tempCourses">
            <app-course [course] = "course"></app-course>
            <br>
        </div>

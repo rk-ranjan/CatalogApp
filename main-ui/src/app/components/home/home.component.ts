@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CoursesService } from 'src/app/shared/services/courses.service';
 import { Course } from 'src/app/shared/models/course';
 import { Category } from 'src/app/shared/models/category';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-home',
@@ -31,16 +32,27 @@ export class HomeComponent implements OnInit {
           });
       });      
   }
-
-  public selectRadioButton = () =>{
-      if(this.tempCourses.length === this.courses.length) {
-        
-      }
-  }
   
-  public changECategory = (data: string) => {
-    console.log(data);
-    this.myRadio = data;
+  public changeCategory = (data: string) => {
+     this.myRadio = data;
+     this.filterByCourse(this.myRadio);
+  }
+
+  public filterByCourse = (courseName: string) => {
+     if(courseName === 'all') {
+       this.tempCourses = this.courses;
+     } else {
+        var temp: any[] = [];
+        this.courses.forEach((elem) => {
+            if(elem.category === courseName) {
+              temp.push(elem);
+            }
+        });
+        this.tempCourses = [...temp];
+     }
+  }
+  public filterCourse = (inputText: string) => {
+     console.log(inputText);
   }
 
 }
