@@ -3,22 +3,22 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Course } from '../models/course';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoursesService {
+  // public baseUrl: string = environment.baseUrl;
   public secretKey: string = "?secret=HelloMars"
-  public allCategoryUrl: string = "all_categories"+this.secretKey;
+  public allCategoryUrl: string ="all_categories"+this.secretKey;
   public allCoursesUrl: string = "all_courses"+this.secretKey;
-  public header = new HttpHeaders();
-
 
   constructor(
     private http: HttpClient,
   
   ) {
-     this.header.append('Content-Type', 'application/x-www-form-urlencoded');
+
    }
 
   /**.
@@ -26,7 +26,7 @@ export class CoursesService {
    * 
   */
   public getAllCourses = (): Observable<Course[]> => {
-    return this.http.get<Course[]>(this.allCoursesUrl, {headers: this.header,}).pipe(
+    return this.http.get<Course[]>(this.allCoursesUrl).pipe(
       map((res: Course[]) => {
         return res;
       })

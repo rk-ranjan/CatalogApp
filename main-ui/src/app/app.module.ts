@@ -7,10 +7,11 @@ import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './components/home/home.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { CourseComponent } from './components/course/course.component';
 import { FormsModule } from '@angular/forms';
+import { HttpInterceptorServiceService } from './services/http-interceptor-service.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,11 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpInterceptorServiceService,
+    multi: true,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
